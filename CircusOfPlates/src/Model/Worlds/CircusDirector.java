@@ -11,7 +11,7 @@ import Model.GameObjects.ObjectCollections.ControllableObjects;
 import Model.GameObjects.ObjectCollections.MovableObjects;
 import eg.edu.alexu.csd.oop.game.World;
 
-public class CircusChooser {  //Factory  
+public class CircusDirector {    
     public static World getEasyCircus(int width, int height){
         //Build Difficulty
         DifficultyBuilder difficultyBuilder = new EasyDifficultyBuilder();
@@ -23,17 +23,17 @@ public class CircusChooser {  //Factory
         
         
         //Build Circus with Difficulty
-        WorldBuilder redCircusBuilder = new RedCircusBuilder();
-        ((CircusBuilder) redCircusBuilder).setDifficulty(easyDifficulty);
-        Clown gameClown = new Clown(100, 430, "/Sprites/Clown.png");
+        WorldBuilder circusBuilder = new BasicCircusBuilder();
+        ((CircusBuilder) circusBuilder).setDifficulty(easyDifficulty);
+        Clown gameClown = new Clown(100, 430, 30, "/Sprites/Clown.png");
         ConstantObjects constantObjects = new ConstantObjects();
         MovableObjects movableObjects = new MovableObjects();
         ControllableObjects controllableObjects = new ControllableObjects(gameClown);
-        redCircusBuilder.buildConstants(constantObjects);
-        redCircusBuilder.buildControllables(controllableObjects);
-        redCircusBuilder.buildMovables(movableObjects);
-        redCircusBuilder.buildDimensions(width, height);
-        return redCircusBuilder.getResult();
+        circusBuilder.buildConstants(constantObjects);
+        circusBuilder.buildControllables(controllableObjects);
+        circusBuilder.buildMovables(movableObjects);
+        circusBuilder.buildDimensions(width, height);
+        return circusBuilder.getResult();
         
     
     }

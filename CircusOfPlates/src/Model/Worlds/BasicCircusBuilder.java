@@ -1,7 +1,7 @@
 package Model.Worlds;
 
 import Model.Difficulties.Difficulty;
-import Model.GameObjects.RedCircusImage;
+import Model.GameObjects.BackgroundImage;
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
 import Model.GameObjects.ObjectCollections.MovableObjects;
@@ -10,7 +10,7 @@ import eg.edu.alexu.csd.oop.game.World;
 
 
 
-public class RedCircusBuilder implements CircusBuilder, WorldBuilder{
+public class BasicCircusBuilder implements CircusBuilder, WorldBuilder{
 
     private Difficulty circusDifficulty;
     private int width;
@@ -49,7 +49,7 @@ public class RedCircusBuilder implements CircusBuilder, WorldBuilder{
 
     @Override
     public World getResult() {
-        circusBackGround = RedCircusImage.getCircusImage(width, height);
+        circusBackGround = BackgroundImage.getBackgroundImage(width, height, "/Sprites/Circus.png");
         constantObjects.addGameObject(circusBackGround);
         return new Circus(circusDifficulty, width, height, constantObjects, movableObjects, controllableObjects);
     }

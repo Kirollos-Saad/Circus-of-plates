@@ -18,6 +18,6 @@ public class ControllableObjects extends GameObjectCollection{
     }
     
     public int getClownSpeed(){
-        return 30;
+        return clown.getSpeed();
     }
 }

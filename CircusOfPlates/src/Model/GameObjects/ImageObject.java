@@ -1,79 +1,53 @@
 package Model.GameObjects;
 
-import eg.edu.alexu.csd.oop.game.GameObject;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class ImageObject implements GameObject {
+public class ImageObject { // Intrinsic Object in Flyweight Design Pattern
 
-    protected BufferedImage[] spriteImages;
-    private int x;
-    private int y;
-    private boolean visible;
+    private BufferedImage[] spriteImages;
 
-    public ImageObject(int posX, int posY, String path) {
-        this(posX, posY, path, 1);
-    }
-
-    public ImageObject(int posX, int posY, String path, int spriteCount) {
-        this.x = posX;
-        this.y = posY;      
-        this.visible = true;
-        this.spriteImages = new BufferedImage[spriteCount];
-        // create a bunch of buffered images and place into an array, to be displayed sequentially
-        try {
-            spriteImages[0] = ImageIO.read(getClass().getResourceAsStream(path));
-            System.out.println("Image loaded once");
-        } catch (IOException e) {
-            e.printStackTrace();
+    public ImageObject(String[] spritePaths) {
+        spriteImages = new BufferedImage[spritePaths.length];
+        for (int i = 0; i < spritePaths.length; i++) {
+            spriteImages[i] = readImage(spritePaths[i]);
         }
     }
 
-    @Override
-    public int getX() {
-        return x;
+    public ImageObject(String[] spritePaths, int sizeX, int sizeY) {
+        this(spritePaths);
+        for (int i = 0; i < spritePaths.length; i++) {
+            spriteImages[i] = getResizedImage(spriteImages[i], sizeX, sizeY);
+        }
+    }
+    
+    public ImageObject(BufferedImage[] spriteImages){
+        this.spriteImages = spriteImages;
     }
 
-    @Override
-    public void setX(int mX) {
-        this.x = mX;
+    private BufferedImage readImage(String path) {
+        try {
+            return ImageIO.read(getClass().getResourceAsStream(path));
+        } catch (IOException ex) {
+            Logger.getLogger(ImageObject.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
     }
 
-    @Override
-    public int getY() {
-        return y;
+    private BufferedImage getResizedImage(BufferedImage originalImage, int sizeX, int sizeY) {
+        Image resultingImage = originalImage.getScaledInstance(sizeX, sizeY, Image.SCALE_DEFAULT);
+        BufferedImage resizedImage = new BufferedImage(sizeX, sizeY, BufferedImage.TYPE_INT_RGB);
+        resizedImage.getGraphics().drawImage(resultingImage, 0, 0, null);
+        return resizedImage;
     }
 
-    @Override
-    public void setY(int mY) {
-        this.y = mY;
-    }
-
-    @Override
     public BufferedImage[] getSpriteImages() {
         return spriteImages;
     }
-
-    @Override
-    public int getWidth() {
-        return spriteImages[0].getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return spriteImages[0].getHeight();
-    }
-
-    @Override
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-
 
 }

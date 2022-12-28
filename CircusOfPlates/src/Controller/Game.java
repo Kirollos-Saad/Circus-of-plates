@@ -2,14 +2,36 @@ package Controller;
 
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
+public class Game { //Singleton Design pattern
 
-
-public class Game {
-    
-    private static GameEngine.GameController gameController; 
-    public static final int GAME_REFRESH =10;    
+    public static final int GAME_REFRESH = 10;
+    private static Game game = new Game("Circus Of Plates", 979, 667); //Non Lazy Singleton
+    private GameEngine.GameController gameController;
+    private final int screenWidth;
+    private final int screenHeigt;
     public static void main(String[] args) {
-        gameController = GameInitializer.startGame("Circus Of Plates",979, 667);
         
+                 
+    }
+
+    private Game(String title, int gameScreenWidth, int gameScreenHeight) {
+        this.gameController = GameInitializer.startGame(title, gameScreenWidth, gameScreenHeight);
+        this.screenWidth = gameScreenWidth;
+        this.screenHeigt = gameScreenHeight;
+
+    }
+
+    public static Game getGameObject() {
+
+        return game;
+
+    }
+
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+
+    public int getScreenHeight() {
+        return screenHeigt;
     }
 }

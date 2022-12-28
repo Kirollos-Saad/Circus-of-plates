@@ -5,6 +5,8 @@ import Model.Difficulties.Difficulty;
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
 import Model.GameObjects.ObjectCollections.MovableObjects;
+import Model.GameObjects.Shapes.Ball;
+import Model.GameObjects.Shapes.GameShape;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 import java.util.List;
@@ -21,27 +23,27 @@ public class Circus implements World {
     public Circus(Difficulty circusDifficulty, int width, int height, ConstantObjects constantObjects, MovableObjects movableObjects, ControllableObjects controllableObjects) {
         this.circusDifficulty = circusDifficulty;
         this.width = width;
-        this.height = height;     
+        this.height = height;
         this.constantObjects = constantObjects;
         this.movableObjects = movableObjects;
         this.controllableObjects = controllableObjects;
+
     }
-
-
 
     @Override
     public List<GameObject> getConstantObjects() {
-        return  constantObjects.getGameObjectsList();
+        return constantObjects.getGameObjectsList();
     }
 
     @Override
     public List<GameObject> getMovableObjects() {
         return movableObjects.getGameObjectsList();
+
     }
 
     @Override
     public List<GameObject> getControlableObjects() {
-       return controllableObjects.getGameObjectsList();
+        return controllableObjects.getGameObjectsList();
     }
 
     @Override
@@ -56,12 +58,18 @@ public class Circus implements World {
 
     @Override
     public boolean refresh() {
+        spawnShapes();
+        for (int i = 0; i < movableObjects.getGameObjectsList().size(); i++) {
+            GameObject shape = movableObjects.getGameObjectsList().get(i);
+            shape.setY(shape.getY() + 1);
+        }
+
         return true;
     }
 
     @Override
     public String getStatus() {
-        return "Not Sure What This Does";
+        return "";
     }
 
     @Override
@@ -74,4 +82,13 @@ public class Circus implements World {
         return controllableObjects.getClownSpeed();
     }
 
+    private void spawnShapes() {
+        GameShape spawnedShape = circusDifficulty.getSpawner().spawnShape();
+
+        if (spawnedShape != null && spawnedShape instanceof Ball) {
+            System.out.println(spawnedShape.getClass());
+            movableObjects.addGameObject(spawnedShape);
+        }
+
+    }
 }
