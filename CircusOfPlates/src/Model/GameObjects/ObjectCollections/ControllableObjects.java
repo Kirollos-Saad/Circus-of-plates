@@ -1,8 +1,11 @@
 
 package Model.GameObjects.ObjectCollections;
 
+import Model.Factories.AbstractShapeFactory;
+import Model.Factories.EasyShapeFactory;
 import Model.GameObjects.Clowns.Clown;
 import eg.edu.alexu.csd.oop.game.GameObject;
+import java.awt.Color;
 
 
 public class ControllableObjects extends GameObjectCollection{
@@ -17,7 +20,9 @@ public class ControllableObjects extends GameObjectCollection{
         this.addGameObject(clown);
     }
     
-    public int getClownSpeed(){
+    public int getControlSpeed(){
         return clown.getSpeed();
     }
+        
+    
 }

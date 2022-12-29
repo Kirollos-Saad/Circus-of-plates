@@ -12,5 +12,6 @@ public interface WorldBuilder {
     void buildConstants(ConstantObjects constantObjects);
     void buildMovables(MovableObjects movableObjects);
     void buildControllables(ControllableObjects controllableObjects);
+    void buildBackgroundPath(String backgroundPath);
     World getResult();
 }

@@ -2,7 +2,6 @@ package Model.Factories;
 
 import Model.GameObjects.Shapes.Ball;
 import Model.GameObjects.Shapes.Bomb;
-import Model.GameObjects.Shapes.GameShape;
 import Model.GameObjects.Shapes.PaintedShape;
 import Model.GameObjects.Shapes.PaintedShapeFlyweight;
 import Model.GameObjects.Shapes.Plate;

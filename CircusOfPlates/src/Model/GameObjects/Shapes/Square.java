@@ -3,10 +3,11 @@ package Model.GameObjects.Shapes;
 import Model.GameObjects.ImageObject;
 import static Model.GameObjects.Shapes.Ball.SPRITE_HEIGHT;
 import static Model.GameObjects.Shapes.Ball.SPRITE_WIDTH;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class Square extends GameShape implements PaintedShape {
@@ -55,10 +56,14 @@ public class Square extends GameShape implements PaintedShape {
         Graphics2D g2 = bufferedImages[0].createGraphics();
         g2.setColor(shapeColor);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setStroke(new BasicStroke(3));
         g2.fillRect(0, 0, SIDE_LENGTH, SIDE_LENGTH);
         g2.dispose();
         return new ImageObject(bufferedImages);
 
+    }
+
+    @Override
+    public Shape getIntersectionFrame() {
+        return new Rectangle2D.Float(this.getX(), this.getY(), SPRITE_WIDTH,  SPRITE_HEIGHT);
     }
 }

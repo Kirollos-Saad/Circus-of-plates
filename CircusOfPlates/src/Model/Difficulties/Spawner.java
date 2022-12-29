@@ -2,6 +2,7 @@ package Model.Difficulties;
 
 import Model.GameObjects.Shapes.GameShape;
 import Model.Factories.AbstractShapeFactory;
+import Model.GameObjects.ObjectCollections.GameObjectCollection;
 import java.awt.Color;
 import java.awt.Point;
 import java.util.Random;
@@ -19,7 +20,8 @@ public abstract class Spawner {
     }
 
     public abstract GameShape spawnShape();
-
+    public abstract void spawnShapeInContainer(GameObjectCollection container);
+    
     protected abstract Color generateColor();
 
     protected abstract Point generatePosition();

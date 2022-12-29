@@ -1,7 +1,7 @@
 package Model.Difficulties;
 
 import Model.Factories.AbstractShapeFactory;
-import Model.Factories.EasyShapeFactory;
+
 
 public class EasyDifficultyBuilder implements DifficultyBuilder{        
     private AbstractShapeFactory shapeFactory;
@@ -12,8 +12,8 @@ public class EasyDifficultyBuilder implements DifficultyBuilder{
     }
 
     @Override
-    public void buildShapeFactory() {
-        this.shapeFactory = new EasyShapeFactory();
+    public void buildShapeFactory(AbstractShapeFactory abstractShapeFactory) {
+        this.shapeFactory = abstractShapeFactory;
     }
 
     @Override

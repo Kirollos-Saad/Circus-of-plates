@@ -2,7 +2,7 @@ package Controller;
 
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
-public class Game { //Singleton Design pattern
+public class Game { //Lazy or Nonlazy Singleton Design pattern
 
     public static final int GAME_REFRESH = 10;
     private static Game game = new Game("Circus Of Plates", 979, 667); //Non Lazy Singleton
@@ -11,7 +11,7 @@ public class Game { //Singleton Design pattern
     private final int screenHeigt;
     public static void main(String[] args) {
         
-                 
+         
     }
 
     private Game(String title, int gameScreenWidth, int gameScreenHeight) {

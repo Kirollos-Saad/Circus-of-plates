@@ -5,17 +5,14 @@ import Model.GameObjects.BackgroundImage;
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
 import Model.GameObjects.ObjectCollections.MovableObjects;
-import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
-
-
-public class BasicCircusBuilder implements CircusBuilder, WorldBuilder{
+public class BasicCircusBuilder implements CircusBuilder, WorldBuilder {
 
     private Difficulty circusDifficulty;
     private int width;
     private int height;
-    private GameObject circusBackGround;
+    private String backgroundPath;
     private ConstantObjects constantObjects;
     private MovableObjects movableObjects;
     private ControllableObjects controllableObjects;
@@ -30,7 +27,6 @@ public class BasicCircusBuilder implements CircusBuilder, WorldBuilder{
         this.width = width;
         this.height = heigth;
     }
-
 
     @Override
     public void buildConstants(ConstantObjects constantObjects) {
@@ -48,16 +44,15 @@ public class BasicCircusBuilder implements CircusBuilder, WorldBuilder{
     }
 
     @Override
+    public void buildBackgroundPath(String backgroundPath) {
+        this.backgroundPath = backgroundPath;
+    }
+
+    @Override
     public World getResult() {
-        circusBackGround = BackgroundImage.getBackgroundImage(width, height, "/Sprites/Circus.png");
-        constantObjects.addGameObject(circusBackGround);
+            
+        constantObjects.addGameObject(BackgroundImage.getBackgroundImage(width, height, backgroundPath));
         return new Circus(circusDifficulty, width, height, constantObjects, movableObjects, controllableObjects);
     }
 
-
-    
-    
-        
-    
-    
 }

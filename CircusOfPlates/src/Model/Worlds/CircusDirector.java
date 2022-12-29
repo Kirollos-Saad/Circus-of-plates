@@ -5,6 +5,7 @@ import Model.Difficulties.Difficulty;
 import Model.Difficulties.DifficultyBuilder;
 import Model.Difficulties.EasyDifficultyBuilder;
 import Model.Difficulties.EasySpawner;
+import Model.Factories.EasyShapeFactory;
 import Model.GameObjects.Clowns.Clown;
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
@@ -15,7 +16,7 @@ public class CircusDirector {
     public static World getEasyCircus(int width, int height){
         //Build Difficulty
         DifficultyBuilder difficultyBuilder = new EasyDifficultyBuilder();
-        difficultyBuilder.buildShapeFactory();
+        difficultyBuilder.buildShapeFactory(new EasyShapeFactory());
         difficultyBuilder.buildShapeSpeed(10);
         difficultyBuilder.buildSpawner(new EasySpawner());
         Difficulty easyDifficulty = difficultyBuilder.getResult();
@@ -30,6 +31,7 @@ public class CircusDirector {
         MovableObjects movableObjects = new MovableObjects();
         ControllableObjects controllableObjects = new ControllableObjects(gameClown);
         circusBuilder.buildConstants(constantObjects);
+        circusBuilder.buildBackgroundPath("/Sprites/Circus.png");
         circusBuilder.buildControllables(controllableObjects);
         circusBuilder.buildMovables(movableObjects);
         circusBuilder.buildDimensions(width, height);

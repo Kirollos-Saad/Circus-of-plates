@@ -2,13 +2,15 @@ package Model.Worlds;
 
 import Controller.Game;
 import Model.Difficulties.Difficulty;
+import Model.Factories.AbstractShapeFactory;
+import Model.Factories.EasyShapeFactory;
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
 import Model.GameObjects.ObjectCollections.MovableObjects;
-import Model.GameObjects.Shapes.Ball;
-import Model.GameObjects.Shapes.GameShape;
+import Model.Intersections.IntersectionDetector;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
+import java.awt.Color;
 import java.util.List;
 
 public class Circus implements World {
@@ -27,6 +29,11 @@ public class Circus implements World {
         this.constantObjects = constantObjects;
         this.movableObjects = movableObjects;
         this.controllableObjects = controllableObjects;
+
+        AbstractShapeFactory testingFactory = new EasyShapeFactory();
+        testingFactory.setShapeSpeed(10);
+        GameObject gameObject = testingFactory.getSquare(100 + 3, 430 + 14, Color.yellow);
+        controllableObjects.addGameObject(gameObject);
 
     }
 
@@ -58,11 +65,14 @@ public class Circus implements World {
 
     @Override
     public boolean refresh() {
-        spawnShapes();
+        circusDifficulty.getSpawner().spawnShapeInContainer(movableObjects);
+
         for (int i = 0; i < movableObjects.getGameObjectsList().size(); i++) {
             GameObject shape = movableObjects.getGameObjectsList().get(i);
             shape.setY(shape.getY() + 1);
         }
+
+        IntersectionDetector.getIntersectionDetector().handleIntersections(constantObjects, movableObjects, controllableObjects);
 
         return true;
     }
@@ -79,16 +89,7 @@ public class Circus implements World {
 
     @Override
     public int getControlSpeed() {
-        return controllableObjects.getClownSpeed();
+        return controllableObjects.getControlSpeed();
     }
 
-    private void spawnShapes() {
-        GameShape spawnedShape = circusDifficulty.getSpawner().spawnShape();
-
-        if (spawnedShape != null && spawnedShape instanceof Ball) {
-            System.out.println(spawnedShape.getClass());
-            movableObjects.addGameObject(spawnedShape);
-        }
-
-    }
 }

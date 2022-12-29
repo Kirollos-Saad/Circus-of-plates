@@ -16,8 +16,5 @@ public class GameInitializer {
         gameMenuBar.setActionListeners(gameController);
         return gameController;
     }
-    
-    
-    
-    
+              
 }

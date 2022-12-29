@@ -1,11 +1,12 @@
 package Model.GameObjects.Shapes;
 
 import Model.GameObjects.ImageObject;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 
 public class Ball extends GameShape implements PaintedShape {
 
@@ -23,7 +24,7 @@ public class Ball extends GameShape implements PaintedShape {
          super(speed, x, y);
     }
     
-    // Used when creating shape from already existing fly weight
+    // Used when creating shape from already existing flyweight
     public void setShapeFlyweight(PaintedShapeFlyweight shapeFlyweight) {
         this.shapeFlyweight = shapeFlyweight;
     }
@@ -55,12 +56,15 @@ public class Ball extends GameShape implements PaintedShape {
         bufferedImages[0] = new BufferedImage(SPRITE_WIDTH, SPRITE_HEIGHT, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = bufferedImages[0].createGraphics();
         g2.setColor(shapeColor);
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setStroke(new BasicStroke(3));
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);        
         g2.fillOval(0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
         g2.dispose();
         return new ImageObject(bufferedImages);
+    }
 
+    @Override
+    public Shape getIntersectionFrame() {
+        return new Ellipse2D.Float(this.getX(), this.getY(), SPRITE_WIDTH,  SPRITE_HEIGHT);
     }
 
 }

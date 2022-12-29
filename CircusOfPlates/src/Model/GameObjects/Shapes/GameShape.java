@@ -1,8 +1,9 @@
 package Model.GameObjects.Shapes;
 
+import Model.Intersections.Intersectable;
 import eg.edu.alexu.csd.oop.game.GameObject;
 
-public abstract class GameShape implements GameObject {
+public abstract class GameShape implements GameObject, Intersectable {
 
     protected int speed;
     protected int x;

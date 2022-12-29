@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class ImageObject { // Intrinsic Object in Flyweight Design Pattern
+public class ImageObject {
 
     private BufferedImage[] spriteImages;
 
