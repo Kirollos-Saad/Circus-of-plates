@@ -1,10 +1,19 @@
 package Model.GameObjects.Shapes;
 
+import Model.GameObjects.ImageObject;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-
-public class Plate extends GameShape{
+public class Plate extends GameShape implements PaintedShape {
+    //Original Dimensions were 54, and 30 please don't delete this comment 
+    public static final int SPRITE_WIDTH = 27; 
+    public static final int SPRITE_HEIGHT = 15; 
+    private PaintedShapeFlyweight shapeFlyweight;
 
     public Plate(int speed, int x, int y) {
         super(speed, x, y);
@@ -12,22 +21,65 @@ public class Plate extends GameShape{
 
     @Override
     public int getWidth() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return shapeFlyweight.getImage().getSpriteImages()[0].getWidth();
     }
 
     @Override
     public int getHeight() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return shapeFlyweight.getImage().getSpriteImages()[0].getHeight();
     }
 
     @Override
     public BufferedImage[] getSpriteImages() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return shapeFlyweight.getImage().getSpriteImages();
     }
 
     @Override
     public Shape getIntersectionFrame() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new Rectangle2D.Float(this.getX(), this.getY(), SPRITE_WIDTH, SPRITE_HEIGHT);
     }
-    
+
+    @Override
+    public ImageObject paintShape(Color shapeColor) {
+        int horizontalRadius = SPRITE_WIDTH / 2;
+        int verticalRadius = SPRITE_HEIGHT / 6;
+        Point point1 = new Point(0, verticalRadius);
+        Point point2 = new Point(2 * horizontalRadius, verticalRadius);
+        Point point3 = new Point((5*horizontalRadius)/3, 6 * verticalRadius);
+        Point point4 = new Point(horizontalRadius/3, 6 * verticalRadius);
+         
+         System.out.println(point3.x + ", " + point3.y);
+         System.out.println(point4.x + ", " + point4.y);
+
+        BufferedImage[] bufferedImages = new BufferedImage[1];
+        bufferedImages[0] = new BufferedImage(SPRITE_WIDTH, SPRITE_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = bufferedImages[0].createGraphics();
+        g2.setColor(shapeColor);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        //Drawing Plate Base
+        g2.fillPolygon(new int[]{point1.x, point2.x, point3.x, point4.x}, new int[]{point1.y, point2.y, point3.y, point4.y}, 4);
+
+        //Drawing Plate Top
+        g2.setColor(Color.BLACK); //Top is always black
+        g2.fillOval(0, 0, horizontalRadius * 2, verticalRadius * 2);
+                
+        return new ImageObject(bufferedImages);
+    }
+
+    @Override
+    public void setShapeFlyweight(PaintedShapeFlyweight shapeFlyweight) {
+        this.shapeFlyweight = shapeFlyweight;
+    }
+
+    @Override
+    public void createFlyWeight(Color shapeColor) {
+        this.shapeFlyweight = new PaintedShapeFlyweight(paintShape(shapeColor), shapeColor);
+    }
+
+    @Override
+    public PaintedShapeFlyweight getShapeFlyweight() {
+        return shapeFlyweight;
+    }
+
 }

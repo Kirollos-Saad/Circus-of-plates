@@ -46,6 +46,9 @@ public class EasySpawner extends Spawner {
 
             case 1:
                 return shapeFactory.getSquare(shapeCoordinates.x, shapeCoordinates.y, generateColor());
+                
+            case 2:
+                return shapeFactory.getPlate(shapeCoordinates.x, shapeCoordinates.y, generateColor());
 
             default:
                 return null;

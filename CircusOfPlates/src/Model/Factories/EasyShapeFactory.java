@@ -14,10 +14,12 @@ public class EasyShapeFactory implements AbstractShapeFactory {
     private int shapeSpeed;
     private LinkedList<PaintedShapeFlyweight> ballFlyWeights;
     private LinkedList<PaintedShapeFlyweight> squareFlyweights;
+    private LinkedList<PaintedShapeFlyweight> plateFlyweights;
 
     public EasyShapeFactory() {
         ballFlyWeights = new LinkedList<>();
         squareFlyweights = new LinkedList<>();
+        plateFlyweights = new LinkedList<>();
     }
 
     @Override
@@ -32,7 +34,10 @@ public class EasyShapeFactory implements AbstractShapeFactory {
 
     @Override
     public Plate getPlate(int xPos, int yPos, Color shapeColor) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Plate plate = new Plate(shapeSpeed, xPos, yPos);
+        checkPaintedShapeFlyWeights(plateFlyweights, shapeColor, plate);
+        return plate;
+
     }
 
     @Override
