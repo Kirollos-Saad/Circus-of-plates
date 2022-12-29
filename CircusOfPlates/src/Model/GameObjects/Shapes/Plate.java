@@ -47,9 +47,6 @@ public class Plate extends GameShape implements PaintedShape {
         Point point2 = new Point(2 * horizontalRadius, verticalRadius);
         Point point3 = new Point((5*horizontalRadius)/3, 6 * verticalRadius);
         Point point4 = new Point(horizontalRadius/3, 6 * verticalRadius);
-         
-         System.out.println(point3.x + ", " + point3.y);
-         System.out.println(point4.x + ", " + point4.y);
 
         BufferedImage[] bufferedImages = new BufferedImage[1];
         bufferedImages[0] = new BufferedImage(SPRITE_WIDTH, SPRITE_HEIGHT, BufferedImage.TYPE_INT_ARGB);

@@ -39,7 +39,7 @@ public class EasySpawner extends Spawner {
     public GameShape spawnShape() {
         AbstractShapeFactory shapeFactory = getShapeFactory();
         Point shapeCoordinates = generatePosition();
-        int random = generateRandom(10);
+        int random = generateRandom(20);
         switch (random) {
             case 0:
                 return shapeFactory.getBall(shapeCoordinates.x, shapeCoordinates.y, generateColor());
@@ -49,6 +49,8 @@ public class EasySpawner extends Spawner {
                 
             case 2:
                 return shapeFactory.getPlate(shapeCoordinates.x, shapeCoordinates.y, generateColor());
+            case 3:
+                return generateRandom(20) == 3 ? shapeFactory.getBomb(shapeCoordinates.x, shapeCoordinates.y, generateRandom(1, 3)) : spawnShape();
 
             default:
                 return null;
@@ -80,10 +82,10 @@ public class EasySpawner extends Spawner {
         int screenWidth = Game.getGameObject().getScreenWidth();
         int screenHeight = Game.getGameObject().getScreenHeight();
 
-        int xmin = (int) (screenWidth / 4);
-        int xmax = (int) (3 * screenWidth / 4);
+        int xmin = (int) (screenWidth / 10);
+        int xmax = (int) (9 * screenWidth / 10);
         int ymin = -10;
-        int ymax = (int) (screenWidth / 4);
+        int ymax = (int) (screenWidth / 10);
         return new Point(generateRandom(xmin, xmax), generateRandom(ymin, ymax));
     }
 

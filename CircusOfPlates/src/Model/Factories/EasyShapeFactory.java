@@ -2,6 +2,8 @@ package Model.Factories;
 
 import Model.GameObjects.Shapes.Ball;
 import Model.GameObjects.Shapes.Bomb;
+import Model.GameObjects.Shapes.ImageShape;
+import Model.GameObjects.Shapes.ImageShapeFlyweight;
 import Model.GameObjects.Shapes.PaintedShape;
 import Model.GameObjects.Shapes.PaintedShapeFlyweight;
 import Model.GameObjects.Shapes.Plate;
@@ -12,6 +14,7 @@ import java.util.LinkedList;
 public class EasyShapeFactory implements AbstractShapeFactory {
 
     private int shapeSpeed;
+    private LinkedList<ImageShapeFlyweight> bombFlyWeights;
     private LinkedList<PaintedShapeFlyweight> ballFlyWeights;
     private LinkedList<PaintedShapeFlyweight> squareFlyweights;
     private LinkedList<PaintedShapeFlyweight> plateFlyweights;
@@ -20,6 +23,7 @@ public class EasyShapeFactory implements AbstractShapeFactory {
         ballFlyWeights = new LinkedList<>();
         squareFlyweights = new LinkedList<>();
         plateFlyweights = new LinkedList<>();
+        bombFlyWeights = new LinkedList<>();
     }
 
     @Override
@@ -28,8 +32,11 @@ public class EasyShapeFactory implements AbstractShapeFactory {
     }
 
     @Override
-    public Bomb getBomb(int xPos, int yPos) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Bomb getBomb(int xPos, int yPos, int imageId) {
+        Bomb bomb = new Bomb(shapeSpeed, xPos, yPos);
+        checkImageShapeFlyWeights(bombFlyWeights, imageId, bomb);
+        return bomb;
+
     }
 
     @Override
@@ -65,6 +72,19 @@ public class EasyShapeFactory implements AbstractShapeFactory {
 
         paintedShape.createFlyWeight(color);
         flyWeightLinkedList.add(paintedShape.getShapeFlyweight());
+    }
+
+    @Override
+    public void checkImageShapeFlyWeights(LinkedList<ImageShapeFlyweight> flyWeightLinkedList, int imageID, ImageShape imageShape) {
+        for (int i = 0; i < flyWeightLinkedList.size(); i++) {
+            if (flyWeightLinkedList.get(i).getImageID()==imageID) {
+                imageShape.setShapeFlyweight(flyWeightLinkedList.get(i));
+                return;
+            }
+        }
+
+        imageShape.createFlyWeight(imageID);
+        flyWeightLinkedList.add(imageShape.getShapeFlyweight());
     }
 
 }
