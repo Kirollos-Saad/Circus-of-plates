@@ -10,4 +10,5 @@ public interface PaintedShape {
     public void setShapeFlyweight(PaintedShapeFlyweight shapeFlyweight);
     public void createFlyWeight(Color shapeColor);
     public PaintedShapeFlyweight getShapeFlyweight();
+    
 }

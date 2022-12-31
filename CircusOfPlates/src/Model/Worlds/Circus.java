@@ -30,11 +30,6 @@ public class Circus implements World {
         this.movableObjects = movableObjects;
         this.controllableObjects = controllableObjects;
 
-        AbstractShapeFactory testingFactory = new EasyShapeFactory();
-        testingFactory.setShapeSpeed(10);
-        GameObject gameObject = testingFactory.getSquare(100 + 3, 430 + 14, Color.yellow);
-        controllableObjects.addGameObject(gameObject);
-
     }
 
     @Override
@@ -66,11 +61,8 @@ public class Circus implements World {
     @Override
     public boolean refresh() {
         circusDifficulty.getSpawner().spawnShapeInContainer(movableObjects);
-
-        for (int i = 0; i < movableObjects.getGameObjectsList().size(); i++) {
-            GameObject shape = movableObjects.getGameObjectsList().get(i);
-            shape.setY(shape.getY() + 1);
-        }
+        movableObjects.moveAll();
+        
 
         IntersectionDetector.getIntersectionDetector().handleIntersections(constantObjects, movableObjects, controllableObjects);
 

@@ -2,8 +2,10 @@ package Model.Factories;
 
 import Model.GameObjects.Shapes.Ball;
 import Model.GameObjects.Shapes.Bomb;
+import Model.GameObjects.Shapes.FallingMovingState;
 import Model.GameObjects.Shapes.ImageShape;
 import Model.GameObjects.Shapes.ImageShapeFlyweight;
+import Model.GameObjects.Shapes.MovingState;
 import Model.GameObjects.Shapes.PaintedShape;
 import Model.GameObjects.Shapes.PaintedShapeFlyweight;
 import Model.GameObjects.Shapes.Plate;
@@ -35,6 +37,7 @@ public class EasyShapeFactory implements AbstractShapeFactory {
     public Bomb getBomb(int xPos, int yPos, int imageId) {
         Bomb bomb = new Bomb(shapeSpeed, xPos, yPos);
         checkImageShapeFlyWeights(bombFlyWeights, imageId, bomb);
+        bomb.setMovingState(new FallingMovingState(bomb));
         return bomb;
 
     }
@@ -43,6 +46,7 @@ public class EasyShapeFactory implements AbstractShapeFactory {
     public Plate getPlate(int xPos, int yPos, Color shapeColor) {
         Plate plate = new Plate(shapeSpeed, xPos, yPos);
         checkPaintedShapeFlyWeights(plateFlyweights, shapeColor, plate);
+        plate.setMovingState(new FallingMovingState(plate));
         return plate;
 
     }
@@ -51,6 +55,7 @@ public class EasyShapeFactory implements AbstractShapeFactory {
     public Ball getBall(int xPos, int yPos, Color shapeColor) {
         Ball ball = new Ball(shapeSpeed, xPos, yPos);
         checkPaintedShapeFlyWeights(ballFlyWeights, shapeColor, ball);
+        ball.setMovingState(new FallingMovingState(ball));
         return ball;
     }
 
@@ -58,6 +63,7 @@ public class EasyShapeFactory implements AbstractShapeFactory {
     public Square getSquare(int xPos, int yPos, Color shapeColor) {
         Square square = new Square(shapeSpeed, xPos, yPos);
         checkPaintedShapeFlyWeights(squareFlyweights, shapeColor, square);
+        square.setMovingState(new FallingMovingState(square));
         return square;
     }
 

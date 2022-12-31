@@ -9,12 +9,25 @@ public abstract class GameShape implements GameObject, Intersectable {
     protected int x;
     protected int y;
     protected boolean visible;
+    private MovingState movingState;
+
+    public MovingState getMovingState() {
+        return movingState;
+    }
+
+    public void setMovingState(MovingState movingState) {
+        this.movingState = movingState;
+    }
 
     public GameShape(int speed, int x, int y) {
         this.speed = speed;
         this.x = x;
         this.y = y;
         this.visible = true;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
     
 

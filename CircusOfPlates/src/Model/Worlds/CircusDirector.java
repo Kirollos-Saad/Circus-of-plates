@@ -17,7 +17,7 @@ public class CircusDirector {
         //Build Difficulty
         DifficultyBuilder difficultyBuilder = new EasyDifficultyBuilder();
         difficultyBuilder.buildShapeFactory(new EasyShapeFactory());
-        difficultyBuilder.buildShapeSpeed(10);
+        difficultyBuilder.buildShapeSpeed(2);
         difficultyBuilder.buildSpawner(new EasySpawner());
         Difficulty easyDifficulty = difficultyBuilder.getResult();
         

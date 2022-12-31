@@ -3,30 +3,14 @@ package Model.Difficulties;
 import Controller.Game;
 import Model.Factories.AbstractShapeFactory;
 import Model.GameObjects.ObjectCollections.GameObjectCollection;
+import Model.GameObjects.Shapes.Bomb;
 import Model.GameObjects.Shapes.GameShape;
 import java.awt.Color;
 import java.awt.Point;
 
 public class EasySpawner extends Spawner {
 
-//    @Override
-//    public GameShape spawnShape() {
-//        AbstractShapeFactory shapeFactory = getShapeFactory();
-//        int random = generateRandom(10);
-//        switch (random) {
-//            case 0:
-//                return shapeFactory.getBall();
-//            case 1:
-//                return shapeFactory.getPlate();
-//            case 2:
-//                return shapeFactory.getTriangle();
-//            case 3:
-//                return generateRandom(4) == 3 ? shapeFactory.getBomb() : spawnShape();
-//            default:
-//                return null;
-//
-//        }
-//    }
+
     @Override
     public void spawnShapeInContainer(GameObjectCollection container) {
         GameShape spawnedShape = this.spawnShape();
@@ -39,7 +23,7 @@ public class EasySpawner extends Spawner {
     public GameShape spawnShape() {
         AbstractShapeFactory shapeFactory = getShapeFactory();
         Point shapeCoordinates = generatePosition();
-        int random = generateRandom(20);
+        int random = generateRandom(200);
         switch (random) {
             case 0:
                 return shapeFactory.getBall(shapeCoordinates.x, shapeCoordinates.y, generateColor());
@@ -50,7 +34,7 @@ public class EasySpawner extends Spawner {
             case 2:
                 return shapeFactory.getPlate(shapeCoordinates.x, shapeCoordinates.y, generateColor());
             case 3:
-                return generateRandom(20) == 3 ? shapeFactory.getBomb(shapeCoordinates.x, shapeCoordinates.y, generateRandom(1, 3)) : spawnShape();
+                return generateRandom(3,3) == 3 ? shapeFactory.getBomb(shapeCoordinates.x, shapeCoordinates.y, generateRandom(1, Bomb.TYPES_NUMBER)) : spawnShape();
 
             default:
                 return null;

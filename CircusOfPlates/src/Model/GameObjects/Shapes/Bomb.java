@@ -6,7 +6,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
 public class Bomb extends GameShape implements ImageShape{
-
+    public static final int TYPES_NUMBER = 3;
     public static final int SPRITE_WIDTH = 100;
     public static final int SPRITE_HEIGHT = 100;
     private ImageShapeFlyweight shapeFlyweight;
