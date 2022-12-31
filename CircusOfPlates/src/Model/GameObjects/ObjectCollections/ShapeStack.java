@@ -1,5 +1,7 @@
 package Model.GameObjects.ObjectCollections;
 
+import Events.EventHandler;
+import Events.ShapeRemovedFromStackEvent;
 import Model.GameObjects.Clowns.Clown;
 import Model.GameObjects.Shapes.GameShape;
 import Model.GameObjects.Shapes.PaintedShape;
@@ -11,7 +13,7 @@ import java.util.LinkedList;
 
 public class ShapeStack implements Intersectable {
 
-    public static final int STACK_WIDTH = 30;
+    public static final int STACK_WIDTH = 38;
     private Clown clown;
     private LinkedList<GameShape> stackOfShapes;
     private Point relativePosition; //Position of top left corner of the base of the stack relative to top left corner of total clown image    
@@ -56,6 +58,7 @@ public class ShapeStack implements Intersectable {
 
             GameShape gameShape = stackOfShapes.remove(stackOfShapes.size()-1);     //Might require observer pattern
             stackTopRelative += gameShape.getHeight();
+            EventHandler.getEventHandler().receiveEvent(new ShapeRemovedFromStackEvent(gameShape));
         }
     }
 
@@ -66,7 +69,7 @@ public class ShapeStack implements Intersectable {
         for (int i = 0; i < stackOfShapes.size(); i++) {
             GameShape gameShape = stackOfShapes.get(i);
             shapeY -= gameShape.getHeight();
-            gameShape.setX(clownX + relativePosition.x);
+            gameShape.setX(clownX + relativePosition.x + STACK_WIDTH/2 - gameShape.getWidth()/2);
             gameShape.setY(shapeY);
 
         }
@@ -78,7 +81,7 @@ public class ShapeStack implements Intersectable {
         int x1 = clown.getX() + relativePosition.x + 5;
         int y1 = clown.getY() + stackTopRelative;
 
-        int x2 = clown.getX() + relativePosition.x + STACK_WIDTH + 5;
+        int x2 = clown.getX() + relativePosition.x + STACK_WIDTH - 5;
         int y2 = y1;
 
         return new Line2D.Float(x1, y1, x2, y2);

@@ -1,5 +1,6 @@
 package Controller;
 
+import Events.EventHandler;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 public class Game { //Lazy or Nonlazy Singleton Design pattern
@@ -9,15 +10,15 @@ public class Game { //Lazy or Nonlazy Singleton Design pattern
     private GameEngine.GameController gameController;
     private final int screenWidth;
     private final int screenHeigt;
+
     public static void main(String[] args) {
-        
-         
+
     }
 
     private Game(String title, int gameScreenWidth, int gameScreenHeight) {
-        this.gameController = GameInitializer.startGame(title, gameScreenWidth, gameScreenHeight);
         this.screenWidth = gameScreenWidth;
         this.screenHeigt = gameScreenHeight;
+        this.gameController = GameInitializer.startGame(title, gameScreenWidth, gameScreenHeight);
 
     }
 
@@ -34,4 +35,5 @@ public class Game { //Lazy or Nonlazy Singleton Design pattern
     public int getScreenHeight() {
         return screenHeigt;
     }
+
 }

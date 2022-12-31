@@ -1,6 +1,7 @@
 
 package Controller;
 
+import Events.EventHandler;
 import Model.Worlds.CircusDirector;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 import eg.edu.alexu.csd.oop.game.World;
@@ -14,6 +15,8 @@ public class GameInitializer {
         World initialGameWorld = CircusDirector.getEasyCircus(gameWidth, gameHeight);
         GameEngine.GameController gameController = GameEngine.start(title, initialGameWorld, gameMenuBar, Color.BLACK);		
         gameMenuBar.setActionListeners(gameController);
+        
+        
         return gameController;
     }
               

@@ -1,6 +1,7 @@
 
 package Model.Worlds;
 
+import Events.EventHandler;
 import Model.Difficulties.Difficulty;
 import Model.Difficulties.DifficultyBuilder;
 import Model.Difficulties.EasyDifficultyBuilder;
@@ -35,6 +36,14 @@ public class CircusDirector {
         circusBuilder.buildControllables(controllableObjects);
         circusBuilder.buildMovables(movableObjects);
         circusBuilder.buildDimensions(width, height);
+        
+        
+        //Adjusting EventHandler
+        EventHandler eventHandler = EventHandler.getEventHandler();
+        eventHandler.setConstantObjects(constantObjects);
+        eventHandler.setControllableObjects(controllableObjects);
+        eventHandler.setMovableObjects(movableObjects);
+        
         return circusBuilder.getResult();
         
     
