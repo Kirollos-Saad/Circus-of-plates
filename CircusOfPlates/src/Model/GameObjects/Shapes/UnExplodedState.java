@@ -13,6 +13,7 @@ public class UnExplodedState implements ExplosionState{
     public void bombTouchedClown() {
         
        bomb.setExplosionState(new ExplodingState(bomb));
+       bomb.changeToExplosionFlyWeight();
             
     }
 
