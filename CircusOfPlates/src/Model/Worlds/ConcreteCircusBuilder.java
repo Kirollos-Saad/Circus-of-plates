@@ -10,7 +10,7 @@ import Model.GameObjects.ObjectCollections.MovableObjects;
 import Model.GameObjects.Shapes.ScoreBoard;
 import eg.edu.alexu.csd.oop.game.World;
 
-public class BasicCircusBuilder implements CircusBuilder, WorldBuilder {
+public class ConcreteCircusBuilder implements CircusBuilder, WorldBuilder {
 
     private Difficulty circusDifficulty;
     private int width;

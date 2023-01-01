@@ -3,14 +3,15 @@ package Model.Difficulties;
 import Model.Factories.AbstractShapeFactory;
 import Model.GameObjects.ObjectCollections.HealthBar;
 
-public class EasyDifficultyBuilder implements DifficultyBuilder {
+public class ConcreteDifficultyBuilder implements DifficultyBuilder {
 
     private AbstractShapeFactory shapeFactory;
     private Spawner spawner;
-    private int shapeSpeed;
     private HealthBar healthBar;
+    private int shapeSpeed;
+  
 
-    public EasyDifficultyBuilder() {
+    public ConcreteDifficultyBuilder() {
     }
 
     @Override
@@ -24,13 +25,13 @@ public class EasyDifficultyBuilder implements DifficultyBuilder {
     }
 
     @Override
+    public void buildHealthBar(int heartCount) {
+        this.healthBar = new HealthBar(heartCount);
+    }
+    
+        @Override
     public void buildShapeSpeed(int shapeSpeed) {
         this.shapeSpeed = shapeSpeed;
-    }
-
-    @Override
-    public void buildHealthBar() {
-        this.healthBar = new HealthBar(5);
     }
 
     @Override
@@ -43,5 +44,7 @@ public class EasyDifficultyBuilder implements DifficultyBuilder {
             throw new NullPointerException("Error Encoutered while building difficulty class");
         }
     }
+
+
 
 }

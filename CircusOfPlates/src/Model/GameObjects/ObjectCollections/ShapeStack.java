@@ -1,6 +1,7 @@
 package Model.GameObjects.ObjectCollections;
 
 import Events.EventHandler;
+import Events.HealthBarEmptyEvent;
 import Events.ShapeRemovedFromStackEvent;
 import Model.GameObjects.Clowns.Clown;
 import Model.GameObjects.Shapes.GameShape;
@@ -29,8 +30,11 @@ public class ShapeStack implements Intersectable {
     public void addToStack(GameShape gameShape) {
         gameShape.getMovingState().shapeCaught();
         stackOfShapes.add(gameShape);
-        stackTopRelative -= gameShape.getHeight();
+        stackTopRelative -= gameShape.getHeight();        
         checkSameColor();
+        if(stackTopRelative + clown.getY() <= 0){
+            EventHandler.getEventHandler().receiveEvent(new HealthBarEmptyEvent());
+        }
     }
 
     public void checkSameColor() {

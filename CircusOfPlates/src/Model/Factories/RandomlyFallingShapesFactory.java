@@ -2,30 +2,30 @@ package Model.Factories;
 
 import Model.GameObjects.Shapes.Ball;
 import Model.GameObjects.Shapes.Bomb;
-import Model.GameObjects.Shapes.FallingMovingState;
 import Model.GameObjects.Shapes.ImageShape;
 import Model.GameObjects.Shapes.ImageShapeFlyweight;
-import Model.GameObjects.Shapes.MovingState;
 import Model.GameObjects.Shapes.PaintedShape;
 import Model.GameObjects.Shapes.PaintedShapeFlyweight;
 import Model.GameObjects.Shapes.Plate;
+import Model.GameObjects.Shapes.RandomlyFallingMovingState;
 import Model.GameObjects.Shapes.Square;
 import java.awt.Color;
 import java.util.LinkedList;
 
-public class EasyShapeFactory implements AbstractShapeFactory {
 
+public class RandomlyFallingShapesFactory implements AbstractShapeFactory{
     private int shapeSpeed;
     private LinkedList<ImageShapeFlyweight> bombFlyWeights;
     private LinkedList<PaintedShapeFlyweight> ballFlyWeights;
     private LinkedList<PaintedShapeFlyweight> squareFlyweights;
     private LinkedList<PaintedShapeFlyweight> plateFlyweights;
-
-    public EasyShapeFactory() {
+    private int randomRange;
+    public RandomlyFallingShapesFactory(int randomRange) {
         ballFlyWeights = new LinkedList<>();
         squareFlyweights = new LinkedList<>();
         plateFlyweights = new LinkedList<>();
         bombFlyWeights = new LinkedList<>();
+        this.randomRange = randomRange;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class EasyShapeFactory implements AbstractShapeFactory {
     public Bomb getBomb(int xPos, int yPos, int imageId) {
         Bomb bomb = new Bomb(shapeSpeed, xPos, yPos);
         checkImageShapeFlyWeights(bombFlyWeights, imageId, bomb);
-        bomb.setMovingState(new FallingMovingState(bomb));
+        bomb.setMovingState(new RandomlyFallingMovingState(bomb, randomRange));
         return bomb;
 
     }
@@ -46,7 +46,7 @@ public class EasyShapeFactory implements AbstractShapeFactory {
     public Plate getPlate(int xPos, int yPos, Color shapeColor) {
         Plate plate = new Plate(shapeSpeed, xPos, yPos);
         checkPaintedShapeFlyWeights(plateFlyweights, shapeColor, plate);
-        plate.setMovingState(new FallingMovingState(plate));
+        plate.setMovingState(new RandomlyFallingMovingState(plate, 3));
         return plate;
 
     }
@@ -55,7 +55,7 @@ public class EasyShapeFactory implements AbstractShapeFactory {
     public Ball getBall(int xPos, int yPos, Color shapeColor) {
         Ball ball = new Ball(shapeSpeed, xPos, yPos);
         checkPaintedShapeFlyWeights(ballFlyWeights, shapeColor, ball);
-        ball.setMovingState(new FallingMovingState(ball));
+        ball.setMovingState(new RandomlyFallingMovingState(ball, 3));
         return ball;
     }
 
@@ -63,7 +63,7 @@ public class EasyShapeFactory implements AbstractShapeFactory {
     public Square getSquare(int xPos, int yPos, Color shapeColor) {
         Square square = new Square(shapeSpeed, xPos, yPos);
         checkPaintedShapeFlyWeights(squareFlyweights, shapeColor, square);
-        square.setMovingState(new FallingMovingState(square));
+        square.setMovingState(new RandomlyFallingMovingState(square, 3));
         return square;
     }
 

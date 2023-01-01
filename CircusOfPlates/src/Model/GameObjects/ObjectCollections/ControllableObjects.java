@@ -2,7 +2,7 @@
 package Model.GameObjects.ObjectCollections;
 
 import Model.Factories.AbstractShapeFactory;
-import Model.Factories.EasyShapeFactory;
+import Model.Factories.DirectlyFallingShapesFactory;
 import Model.GameObjects.Clowns.Clown;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import java.awt.Color;

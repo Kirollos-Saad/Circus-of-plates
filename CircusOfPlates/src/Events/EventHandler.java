@@ -1,5 +1,6 @@
 package Events;
 
+import Controller.Game;
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
 import Model.GameObjects.ObjectCollections.HealthBar;
@@ -24,8 +25,6 @@ public class EventHandler { //Singleton
     }
 
     private MovableObjects movableObjects;
-//    private ControllableObjects controllableObjects;
-//    private ConstantObjects constantObjects;
     private HealthBar healthBar;
     private Circus gameCircus;
     private ScoreBoard scoreBoard;
@@ -67,6 +66,8 @@ public class EventHandler { //Singleton
     }
 
     public void receiveEvent(HealthBarEmptyEvent e) {
+        healthBar.loseAllHearts();
+        Game.getGameObject().getMenu().setVisible(false);
         gameCircus.loseGame();
 
     }

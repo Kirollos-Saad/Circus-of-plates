@@ -85,7 +85,7 @@ public class ScoreBoard implements GameObject {
         Graphics2D g2 = bufferedImages[0].createGraphics();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(java.awt.Color.BLACK);
+        g2.setColor(java.awt.Color.MAGENTA);
         Font font = new Font("Serif", Font.BOLD, CHAR_WIDTH);
         g2.setFont(font);
 

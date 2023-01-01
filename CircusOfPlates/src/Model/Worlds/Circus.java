@@ -3,7 +3,7 @@ package Model.Worlds;
 import Controller.Game;
 import Model.Difficulties.Difficulty;
 import Model.Factories.AbstractShapeFactory;
-import Model.Factories.EasyShapeFactory;
+import Model.Factories.DirectlyFallingShapesFactory;
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
 import Model.GameObjects.ObjectCollections.MovableObjects;

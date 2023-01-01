@@ -43,6 +43,11 @@ public class HealthBar implements GameObject {
         }
 
     }
+    
+    public void loseAllHearts(){
+        heartCount = 0;
+    
+    }
 
     @Override
     public int getX() {
