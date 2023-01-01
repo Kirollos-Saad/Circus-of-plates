@@ -25,6 +25,9 @@ public class GameImageObject implements GameObject {
         this.y = posY;
         this.visible = true;
     }
+    
+    
+    
 
     @Override
     public int getX() {
@@ -34,13 +37,14 @@ public class GameImageObject implements GameObject {
     @Override
     public void setX(int mX) {
         this.x = mX;
+        
     }
 
     @Override
     public int getY() {
         return y;
     }
-
+    
     @Override
     public void setY(int mY) {
         this.y = mY;

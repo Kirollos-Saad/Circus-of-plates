@@ -1,5 +1,6 @@
 package Model.Intersections;
 
+import Model.GameObjects.Clowns.Clown;
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
 import Model.GameObjects.ObjectCollections.MovableObjects;
@@ -26,6 +27,7 @@ public class IntersectionDetector { //Singleton
 
     public void handleIntersections(ConstantObjects constantObjects, MovableObjects movableObjects, ControllableObjects controllableObjects) {
         checkIntersectionsWithStack(movableObjects, controllableObjects);
+        checkIntersectionsWithClown(movableObjects, controllableObjects,constantObjects);
     }
 
     private void checkIntersectionsWithStack(MovableObjects movableObjects, ControllableObjects controllableObjects) {
@@ -46,6 +48,29 @@ public class IntersectionDetector { //Singleton
             }             
         }
 
+    }
+    
+    private void checkIntersectionsWithClown(MovableObjects movableObjects, ControllableObjects controllableObjects,ConstantObjects constantObjects)
+    {
+        
+        
+        Clown clown = controllableObjects.getClown(); 
+        
+        for (int i = 0; i < movableObjects.getGameObjectsList().size(); i++) { // Iterator Pattern can be used here. E3melo el iterator henaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           
+            GameShape gameShape = (GameShape) movableObjects.getGameObjectsList().get(i);
+            if(gameShape instanceof Bomb){
+                
+                for(int j = 1;j >= 0;j--){
+                if(gameShape.getIntersectionFrame().intersects((Rectangle2D) clown.getMorethanOneIntersectionFrame()[j]))
+                    
+                    System.out.println("Bomb has hit frame " + j);
+                }
+  
+            }    
+        }   
+
+
+        
     }
 
 }

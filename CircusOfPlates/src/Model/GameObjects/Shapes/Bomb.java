@@ -1,8 +1,15 @@
 package Model.GameObjects.Shapes;
 
+import Model.GameObjects.GameImageObject;
 import Model.GameObjects.ImageObject;
+import static Model.GameObjects.Shapes.Ball.SPRITE_HEIGHT;
+import static Model.GameObjects.Shapes.Ball.SPRITE_WIDTH;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class Bomb extends GameShape implements ImageShape{
@@ -32,7 +39,7 @@ public class Bomb extends GameShape implements ImageShape{
 
     @Override
     public Shape getIntersectionFrame() {
-        return new Ellipse2D.Float(this.getX(), this.getY(), SPRITE_WIDTH, SPRITE_HEIGHT);
+        return new Ellipse2D.Float(this.getX() + 28, this.getY() + 35, SPRITE_WIDTH/2, SPRITE_HEIGHT/2);
     }
 
     // Used when creating shape from already existing flyweight
