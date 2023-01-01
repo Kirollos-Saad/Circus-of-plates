@@ -27,8 +27,8 @@ public class Clown extends GameImageObject implements Intersectable {
     }
 
     private void initializeStacks() {
-        this.rightStack = new ShapeStack(this, new Point(3, 34));
-        this.leftStack = new ShapeStack(this, new Point(174, 34));
+        this.leftStack = new ShapeStack(this, new Point(3, 34));
+        this.rightStack = new ShapeStack(this, new Point(174, 34));
 
     }
 

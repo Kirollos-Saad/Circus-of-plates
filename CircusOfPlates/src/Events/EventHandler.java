@@ -36,9 +36,11 @@ public class EventHandler { //Singleton
     }
 
     public void receiveEvent(Event e) {
-        if (e instanceof ShapeRemovedFromStackEvent) {
-            movableObjects.removeGameObject(((ShapeRemovedFromStackEvent) e).getRemovedShape());
+        if (e instanceof ShapeRemovalEvent) {
+            movableObjects.removeGameObject(((ShapeRemovalEvent) e).getRemovedShape());
         }
+        
+      
 
     }
 }

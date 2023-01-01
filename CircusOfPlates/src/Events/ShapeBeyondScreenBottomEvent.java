@@ -1,16 +1,17 @@
+
 package Events;
 
 import Model.GameObjects.Shapes.GameShape;
 
-public class ShapeRemovedFromStackEvent implements ShapeRemovalEvent{
-    private GameShape removedShape;
+
+public class ShapeBeyondScreenBottomEvent implements ShapeRemovalEvent{
+        private GameShape removedShape;
 
     public GameShape getRemovedShape() {
         return removedShape;
     }
 
-    public ShapeRemovedFromStackEvent(GameShape removedShape) {
+    public ShapeBeyondScreenBottomEvent(GameShape removedShape) {
         this.removedShape = removedShape;
     }
-    
 }

@@ -1,6 +1,5 @@
 package Controller;
 
-import Events.EventHandler;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 public class Game { //Lazy or Nonlazy Singleton Design pattern

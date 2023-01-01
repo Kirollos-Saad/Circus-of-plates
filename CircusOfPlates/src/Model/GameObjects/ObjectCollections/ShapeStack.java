@@ -56,7 +56,8 @@ public class ShapeStack implements Intersectable {
     public void removeFromStack(int numberOfShapes) {// numberOfShapes equals 3 in the game
         for (int i = 0; i < numberOfShapes; i++) {
 
-            GameShape gameShape = stackOfShapes.remove(stackOfShapes.size()-1);     //Might require observer pattern
+            //GameShape gameShape = stackOfShapes.remove(stackOfShapes.size()-1);     //Might require observer pattern
+            GameShape gameShape = stackOfShapes.pollLast();     //Might require observer pattern
             stackTopRelative += gameShape.getHeight();
             EventHandler.getEventHandler().receiveEvent(new ShapeRemovedFromStackEvent(gameShape));
         }

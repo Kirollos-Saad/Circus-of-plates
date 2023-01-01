@@ -1,5 +1,9 @@
 package Model.Intersections;
 
+import Controller.Game;
+import Events.Event;
+import Events.EventHandler;
+import Events.ShapeBeyondScreenBottomEvent;
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
 import Model.GameObjects.ObjectCollections.MovableObjects;
@@ -25,6 +29,7 @@ public class IntersectionDetector { //Singleton
     }
 
     public void handleIntersections(ConstantObjects constantObjects, MovableObjects movableObjects, ControllableObjects controllableObjects) {
+        removeShapesFromScreenBottom(movableObjects);
         checkIntersectionsWithStack(movableObjects, controllableObjects);
     }
 
@@ -35,15 +40,25 @@ public class IntersectionDetector { //Singleton
 
         for (int i = 0; i < movableObjects.getGameObjectsList().size(); i++) { // Iterator Pattern can be used here. E3melo el iterator henaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           
             GameShape gameShape = (GameShape) movableObjects.getGameObjectsList().get(i);
-            if(gameShape instanceof Bomb){
+            if (gameShape instanceof Bomb) {
                 continue;
             }
-            
+
             if (leftStack.getIntersectionFrame().intersects((Rectangle2D) gameShape.getIntersectionFrame())) {
                 leftStack.addToStack(gameShape);
             } else if (rightStack.getIntersectionFrame().intersects((Rectangle2D) gameShape.getIntersectionFrame())) {
                 rightStack.addToStack(gameShape);
-            }             
+            }
+        }
+
+    }
+
+    private void removeShapesFromScreenBottom(MovableObjects movableObjects) {
+        for (int i = 0; i < movableObjects.getGameObjectsList().size(); i++) { // Iterator Pattern can be used here. E3melo el iterator henaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           
+            GameShape gameShape = (GameShape) movableObjects.getGameObjectsList().get(i);
+            if(gameShape.getY() > Game.getGameObject().getScreenHeight()){
+                EventHandler.getEventHandler().receiveEvent(new ShapeBeyondScreenBottomEvent(gameShape));
+            }
         }
 
     }
