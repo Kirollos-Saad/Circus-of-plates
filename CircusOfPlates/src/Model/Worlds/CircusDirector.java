@@ -28,7 +28,7 @@ public class CircusDirector {
         //Build Circus with Difficulty
         WorldBuilder circusBuilder = new BasicCircusBuilder();
         ((CircusBuilder) circusBuilder).setDifficulty(easyDifficulty);
-        Clown gameClown = new Clown(100, 430, 30, "/Sprites/Clown.png");
+        Clown gameClown = new Clown(100, 430, 30, "/Sprites/Clown 1.png");
         ConstantObjects constantObjects = new ConstantObjects();
         MovableObjects movableObjects = new MovableObjects();
         ControllableObjects controllableObjects = new ControllableObjects(gameClown);
