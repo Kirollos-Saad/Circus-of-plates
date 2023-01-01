@@ -1,5 +1,10 @@
 package Controller;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
+
 
 public class GameMenu extends javax.swing.JFrame {
 
@@ -8,6 +13,8 @@ public class GameMenu extends javax.swing.JFrame {
      */
     public GameMenu() {
         initComponents();
+        this.setTitle("Choose Difficulty");
+        
     }
 
     /**
@@ -23,9 +30,13 @@ public class GameMenu extends javax.swing.JFrame {
         mediumButton = new javax.swing.JButton();
         hardButton = new javax.swing.JButton();
         playButton = new javax.swing.JButton();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 0, 204));
 
+        easyButton.setBackground(new java.awt.Color(0, 255, 255));
+        easyButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         easyButton.setText("Easy");
         easyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -33,6 +44,8 @@ public class GameMenu extends javax.swing.JFrame {
             }
         });
 
+        mediumButton.setBackground(new java.awt.Color(0, 255, 255));
+        mediumButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         mediumButton.setText("Medium");
         mediumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -40,6 +53,8 @@ public class GameMenu extends javax.swing.JFrame {
             }
         });
 
+        hardButton.setBackground(new java.awt.Color(0, 255, 255));
+        hardButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         hardButton.setText("Hard");
         hardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,6 +62,8 @@ public class GameMenu extends javax.swing.JFrame {
             }
         });
 
+        playButton.setBackground(new java.awt.Color(0, 0, 255));
+        playButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         playButton.setText("Play");
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,35 +71,54 @@ public class GameMenu extends javax.swing.JFrame {
             }
         });
 
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hardButton)
-                            .addComponent(mediumButton)
-                            .addComponent(easyButton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
-                        .addComponent(playButton)))
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addGap(172, 172, 172)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(mediumButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(easyButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hardButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(playButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(easyButton)
-                .addGap(38, 38, 38)
-                .addComponent(mediumButton)
-                .addGap(39, 39, 39)
-                .addComponent(hardButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-                .addComponent(playButton)
-                .addGap(47, 47, 47))
+                .addGap(89, 89, 89)
+                .addComponent(easyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(mediumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(137, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -140,9 +176,11 @@ public class GameMenu extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton easyButton;
     private javax.swing.JButton hardButton;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JButton mediumButton;
     private javax.swing.JButton playButton;
     // End of variables declaration//GEN-END:variables
