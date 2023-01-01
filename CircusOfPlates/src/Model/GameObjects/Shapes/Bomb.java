@@ -1,19 +1,21 @@
 package Model.GameObjects.Shapes;
 
-
 import Model.GameObjects.ImageObject;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
-public class Bomb extends GameShape implements ImageShape{
+public class Bomb extends GameShape implements ImageShape {
+
     public static final int TYPES_NUMBER = 3;
     public static final int SPRITE_WIDTH = 100;
     public static final int SPRITE_HEIGHT = 100;
     private ImageShapeFlyweight shapeFlyweight;
+    private ExplosionState explosionState;
 
     public Bomb(int speed, int x, int y) {
         super(speed, x, y);
+        this.explosionState = new UnExplodedState(this);
     }
 
     @Override
@@ -33,7 +35,7 @@ public class Bomb extends GameShape implements ImageShape{
 
     @Override
     public Shape getIntersectionFrame() {
-        return new Ellipse2D.Float(this.getX() + 28, this.getY() + 35, SPRITE_WIDTH/2, SPRITE_HEIGHT/2);
+        return new Ellipse2D.Float(this.getX() + 28, this.getY() + 35, SPRITE_WIDTH / 2, SPRITE_HEIGHT / 2);
     }
 
     // Used when creating shape from already existing flyweight
@@ -54,5 +56,20 @@ public class Bomb extends GameShape implements ImageShape{
     public ImageShapeFlyweight getShapeFlyweight() {
         return shapeFlyweight;
     }
+
+    public void setExplosionState(ExplosionState explosionState) {
+        this.explosionState = explosionState;
+    }
+    
+    
+    public void bombTouchedClown(){
+        explosionState.bombTouchedClown();
+    }
+    
+    public boolean doDamage(){
+    
+        return explosionState.doDamage();
+    }
+    
 
 }

@@ -6,5 +6,6 @@ public interface DifficultyBuilder {
         void buildShapeFactory(AbstractShapeFactory abstractShapeFactory);
         void buildSpawner(Spawner spawner);
         void buildShapeSpeed(int shapeSpeed);
+        void buildHealthBar();
         Difficulty getResult();                
 }

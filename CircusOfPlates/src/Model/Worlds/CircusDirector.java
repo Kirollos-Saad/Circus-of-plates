@@ -20,6 +20,7 @@ public class CircusDirector {
         difficultyBuilder.buildShapeFactory(new EasyShapeFactory());
         difficultyBuilder.buildShapeSpeed(2);
         difficultyBuilder.buildSpawner(new EasySpawner());
+        difficultyBuilder.buildHealthBar();
         Difficulty easyDifficulty = difficultyBuilder.getResult();
         
         
@@ -38,11 +39,8 @@ public class CircusDirector {
         circusBuilder.buildDimensions(width, height);
         
         
-        //Adjusting EventHandler
-        EventHandler eventHandler = EventHandler.getEventHandler();
-        eventHandler.setConstantObjects(constantObjects);
-        eventHandler.setControllableObjects(controllableObjects);
-        eventHandler.setMovableObjects(movableObjects);
+        
+
         
         return circusBuilder.getResult();
         

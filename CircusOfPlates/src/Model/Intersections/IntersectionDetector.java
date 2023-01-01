@@ -1,6 +1,7 @@
 package Model.Intersections;
 
 import Controller.Game;
+import Events.BombExplosionEvent;
 import Events.EventHandler;
 import Events.ShapeBeyondScreenBottomEvent;
 
@@ -16,6 +17,7 @@ import eg.edu.alexu.csd.oop.game.GameObject;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class IntersectionDetector { //Singleton
 
@@ -45,18 +47,27 @@ public class IntersectionDetector { //Singleton
         ShapeStack rightStack = controllableObjects.getClown().getRightStack();
 
         Iterator<GameObject> iterator = movableObjects.getGameObjectsList().iterator();
+        LinkedList<GameShape> addedToLeftStack = new LinkedList<>();
+        LinkedList<GameShape> addedToRightStack = new LinkedList<>();
         while (iterator.hasNext()) {
             GameShape gameShape = (GameShape) iterator.next();
             if (gameShape instanceof Bomb) {
                 continue;
             }
-
             if (leftStack.getIntersectionFrame().intersects((Rectangle2D) gameShape.getIntersectionFrame())) {
-                leftStack.addToStack(gameShape);
+                addedToLeftStack.add(gameShape);
             } else if (rightStack.getIntersectionFrame().intersects((Rectangle2D) gameShape.getIntersectionFrame())) {
-                rightStack.addToStack(gameShape);
+                addedToRightStack.add(gameShape);
 
             }
+        }
+
+        for (GameShape gameShape : addedToLeftStack) {
+            leftStack.addToStack(gameShape);
+        }
+
+        for (GameShape gameShape : addedToRightStack) {
+            rightStack.addToStack(gameShape);
         }
 
     }
@@ -84,7 +95,8 @@ public class IntersectionDetector { //Singleton
 
                 for (int j = 1; j >= 0; j--) {
                     if (gameShape.getIntersectionFrame().intersects((Rectangle2D) clown.getMorethanOneIntersectionFrame()[j])) {
-                        System.out.println("Bomb has hit frame " + j);
+                        ((Bomb) gameShape).bombTouchedClown();
+                        EventHandler.getEventHandler().recieveEvent(new BombExplosionEvent(gameShape));
                     }
                 }
 

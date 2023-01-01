@@ -6,13 +6,13 @@ import Model.GameObjects.Shapes.GameShape;
 
 
 public class BombExplosionEvent implements Event{
-    private Bomb bomb;
+    private GameShape bomb;
     
-    public GameShape getRemovedShape() {
+    public GameShape getBomb() {
         return bomb;
     }
 
-    public BombExplosionEvent(Bomb bomb) {
+    public BombExplosionEvent(GameShape bomb) {
         this.bomb = bomb;
     }
     

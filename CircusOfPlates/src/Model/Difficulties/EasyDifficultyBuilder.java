@@ -1,12 +1,14 @@
 package Model.Difficulties;
 
 import Model.Factories.AbstractShapeFactory;
+import Model.GameObjects.ObjectCollections.HealthBar;
 
+public class EasyDifficultyBuilder implements DifficultyBuilder {
 
-public class EasyDifficultyBuilder implements DifficultyBuilder{        
     private AbstractShapeFactory shapeFactory;
     private Spawner spawner;
     private int shapeSpeed;
+    private HealthBar healthBar;
 
     public EasyDifficultyBuilder() {
     }
@@ -24,18 +26,22 @@ public class EasyDifficultyBuilder implements DifficultyBuilder{
     @Override
     public void buildShapeSpeed(int shapeSpeed) {
         this.shapeSpeed = shapeSpeed;
-    }   
+    }
+
+    @Override
+    public void buildHealthBar() {
+        this.healthBar = new HealthBar(5);
+    }
 
     @Override
     public Difficulty getResult() {
-        try{
+        try {
             shapeFactory.setShapeSpeed(shapeSpeed);
             spawner.setShapeFactory(shapeFactory);
-            return new Difficulty(spawner);
-        }
-        catch(NullPointerException npe){
+            return new Difficulty(spawner, healthBar);
+        } catch (NullPointerException npe) {
             throw new NullPointerException("Error Encoutered while building difficulty class");
         }
     }
-    
+
 }

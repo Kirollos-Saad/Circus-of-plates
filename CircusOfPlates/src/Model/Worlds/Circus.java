@@ -7,6 +7,8 @@ import Model.Factories.EasyShapeFactory;
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
 import Model.GameObjects.ObjectCollections.MovableObjects;
+import Model.GameObjects.Shapes.Heart;
+import Model.GameObjects.Shapes.ScoreBoard;
 import Model.Intersections.IntersectionDetector;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
@@ -21,6 +23,7 @@ public class Circus implements World {
     private ConstantObjects constantObjects;
     private MovableObjects movableObjects;
     private ControllableObjects controllableObjects;
+    private boolean gameRunning;
 
     public Circus(Difficulty circusDifficulty, int width, int height, ConstantObjects constantObjects, MovableObjects movableObjects, ControllableObjects controllableObjects) {
         this.circusDifficulty = circusDifficulty;
@@ -29,8 +32,15 @@ public class Circus implements World {
         this.constantObjects = constantObjects;
         this.movableObjects = movableObjects;
         this.controllableObjects = controllableObjects;
-
+        this.gameRunning = true;
+                                      
     }
+
+    public void loseGame() {
+        this.gameRunning = false;
+    }
+    
+    
 
     @Override
     public List<GameObject> getConstantObjects() {
@@ -66,7 +76,7 @@ public class Circus implements World {
 
         IntersectionDetector.getIntersectionDetector().handleIntersections(constantObjects, movableObjects, controllableObjects);
 
-        return true;
+        return gameRunning;
     }
 
     @Override

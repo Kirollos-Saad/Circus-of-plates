@@ -2,8 +2,11 @@ package Events;
 
 import Model.GameObjects.ObjectCollections.ConstantObjects;
 import Model.GameObjects.ObjectCollections.ControllableObjects;
+import Model.GameObjects.ObjectCollections.HealthBar;
 import Model.GameObjects.ObjectCollections.MovableObjects;
 import Model.GameObjects.Shapes.Bomb;
+import Model.GameObjects.Shapes.ScoreBoard;
+import Model.Worlds.Circus;
 
 public class EventHandler { //Singleton
 
@@ -21,24 +24,33 @@ public class EventHandler { //Singleton
     }
 
     private MovableObjects movableObjects;
-    private ControllableObjects controllableObjects;
-    private ConstantObjects constantObjects;
+//    private ControllableObjects controllableObjects;
+//    private ConstantObjects constantObjects;
+    private HealthBar healthBar;
+    private Circus gameCircus;
+    private ScoreBoard scoreBoard;
+
+    public void setScoreBoard(ScoreBoard scoreBoard) {
+        this.scoreBoard = scoreBoard;
+    }
+
+    public void setGameCircus(Circus gameCircus) {
+        this.gameCircus = gameCircus;
+    }
+
+    public void setHealthBar(HealthBar healthBar) {
+        this.healthBar = healthBar;
+    }
 
     public void setMovableObjects(MovableObjects movableObjects) {
         this.movableObjects = movableObjects;
     }
 
-    public void setControllableObjects(ControllableObjects controllableObjects) {
-        this.controllableObjects = controllableObjects;
-    }
-
-    public void setConstantObjects(ConstantObjects constantObjects) {
-        this.constantObjects = constantObjects;
-    }
 
     public void receiveEvent(ShapeRemovedFromStackEvent e) {
 
         movableObjects.removeGameObject(e.getRemovedShape());
+        scoreBoard.incrementScore(1);
     }
 
     public void receiveEvent(ShapeBeyondScreenBottomEvent e) {
@@ -47,9 +59,16 @@ public class EventHandler { //Singleton
     }
 
     public void recieveEvent(BombExplosionEvent e) {
-        movableObjects.removeGameObject(e.getRemovedShape());
+        if (((Bomb) e.getBomb()).doDamage()) {
+            healthBar.loseHeart();
+        }
 
-        //notify healthbar.
         //notify score.
     }
+
+    public void receiveEvent(HealthBarEmptyEvent e) {
+        gameCircus.loseGame();
+
+    }
+
 }
