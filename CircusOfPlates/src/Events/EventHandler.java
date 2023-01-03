@@ -1,8 +1,6 @@
 package Events;
 
-import Controller.Game;
-import Model.GameObjects.ObjectCollections.ConstantObjects;
-import Model.GameObjects.ObjectCollections.ControllableObjects;
+
 import Model.GameObjects.ObjectCollections.HealthBar;
 import Model.GameObjects.ObjectCollections.MovableObjects;
 import Model.GameObjects.Shapes.Bomb;
@@ -44,11 +42,6 @@ public class EventHandler { //Singleton
     public void setMovableObjects(MovableObjects movableObjects) {
         this.movableObjects = movableObjects;
     }
-
-//    public void receiveEvent(Event e) {
-//        System.out.println("hello event worked");
-// 
-//    }
 
     public void receiveEvent(ShapeRemovedFromStackEvent e) {
 

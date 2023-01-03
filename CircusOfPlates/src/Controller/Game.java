@@ -13,7 +13,6 @@ public class Game { //Singleton Design pattern
     private String gameTitle;
     private final int screenWidth;
     private final int screenHeigt;
-    private JFrame menu;
 
     private Game() {
         this.screenWidth = 979;
@@ -35,14 +34,6 @@ public class Game { //Singleton Design pattern
         GameMenuBar gameMenuBar = new GameMenuBar();
         this.gameController = GameEngine.start(this.gameTitle, gameWorld, gameMenuBar, Color.BLACK);
         gameMenuBar.setActionListeners(gameController);
-    }
-
-    public JFrame getMenu() {
-        return menu;
-    }
-
-    public void setMenu(JFrame menu) {
-        this.menu = menu;
     }
 
     public int getScreenWidth() {
