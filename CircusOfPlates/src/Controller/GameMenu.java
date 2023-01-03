@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Worlds.CircusDirector;
+import eg.edu.alexu.csd.oop.game.World;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
@@ -109,26 +111,27 @@ public class GameMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mediumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumButtonActionPerformed
-        Game.setDifficulty("Medium");
-        play();
+        Game game = Game.getGameObject();
+        World gameWorld = CircusDirector.getMediumCircus(game.getScreenWidth(), game.getScreenHeight());
+        game.setWorld(gameWorld);
+        this.setVisible(false);
     }//GEN-LAST:event_mediumButtonActionPerformed
 
     private void easyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyButtonActionPerformed
-        Game.setDifficulty("Easy");
-        play();
+        Game game = Game.getGameObject();
+        World gameWorld = CircusDirector.getEasyCircus(game.getScreenWidth(), game.getScreenHeight());
+        game.setWorld(gameWorld);
+        this.setVisible(false);
     }//GEN-LAST:event_easyButtonActionPerformed
 
     private void hardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardButtonActionPerformed
-        Game.setDifficulty("Hard");
-        play();
+        Game game = Game.getGameObject();
+        World gameWorld = CircusDirector.getHardCircus(game.getScreenWidth(), game.getScreenHeight());
+        game.setWorld(gameWorld);
+        this.setVisible(false);
     }//GEN-LAST:event_hardButtonActionPerformed
 
-    private void play() {
-        Game game = Game.getGameObject();
-        game.setMenu(this);
-        this.setVisible(false);
 
-    }
 
     /**
      * @param args the command line arguments

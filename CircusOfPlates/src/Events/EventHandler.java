@@ -70,8 +70,7 @@ public class EventHandler { //Singleton
     }
 
     public void receiveEvent(HealthBarEmptyEvent e) {
-        healthBar.loseAllHearts();
-        Game.getGameObject().getMenu().setVisible(false);
+        healthBar.loseAllHearts();        
         gameCircus.loseGame();
 
     }
