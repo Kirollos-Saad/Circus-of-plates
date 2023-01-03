@@ -16,7 +16,6 @@ import Model.GameObjects.Shapes.Bomb;
 import eg.edu.alexu.csd.oop.game.GameObject;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 public class IntersectionDetector { //Singleton
@@ -46,14 +45,15 @@ public class IntersectionDetector { //Singleton
         ShapeStack leftStack = controllableObjects.getClown().getLeftStack();
         ShapeStack rightStack = controllableObjects.getClown().getRightStack();
 
-        Iterator<GameObject> iterator = movableObjects.getGameObjectsList().iterator();
         LinkedList<GameShape> addedToLeftStack = new LinkedList<>();
         LinkedList<GameShape> addedToRightStack = new LinkedList<>();
-        while (iterator.hasNext()) {
-            GameShape gameShape = (GameShape) iterator.next();
-            if (gameShape instanceof Bomb) {
+
+        for (GameObject gameObj : movableObjects) {
+            if (gameObj instanceof Bomb) {
                 continue;
             }
+
+            GameShape gameShape = (GameShape) gameObj;
             if (leftStack.getIntersectionFrame().intersects((Rectangle2D) gameShape.getIntersectionFrame())) {
                 addedToLeftStack.add(gameShape);
             } else if (rightStack.getIntersectionFrame().intersects((Rectangle2D) gameShape.getIntersectionFrame())) {
@@ -61,7 +61,8 @@ public class IntersectionDetector { //Singleton
 
             }
         }
-
+        
+        
         for (GameShape gameShape : addedToLeftStack) {
             leftStack.addToStack(gameShape);
         }
@@ -73,12 +74,12 @@ public class IntersectionDetector { //Singleton
     }
 
     private void removeShapesFromScreenBottom(MovableObjects movableObjects) {
-        for (int i = 0; i < movableObjects.getGameObjectsList().size(); i++) { // Iterator Pattern can be used here. E3melo el iterator henaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           
-            GameShape gameShape = (GameShape) movableObjects.getGameObjectsList().get(i);
-            if (gameShape.getY() > Game.getGameObject().getScreenHeight()) {
-                EventHandler.getEventHandler().receiveEvent(new ShapeBeyondScreenBottomEvent(gameShape));
-            }
 
+        for (GameObject gameObj : movableObjects) {
+
+            if (gameObj.getY() > Game.getGameObject().getScreenHeight()) {
+                EventHandler.getEventHandler().receiveEvent(new ShapeBeyondScreenBottomEvent((GameShape) gameObj));
+            }
         }
 
     }
@@ -87,19 +88,17 @@ public class IntersectionDetector { //Singleton
 
         Clown clown = controllableObjects.getClown();
 
-        Iterator<GameObject> itr = movableObjects.getGameObjectsList().iterator();
-        while (itr.hasNext()) {
+        for (GameObject gameObj : movableObjects) {
 
-            GameShape gameShape = (GameShape) itr.next();
-            if (gameShape instanceof Bomb) {
+            if (gameObj instanceof Bomb) {
 
+                Bomb bomb = (Bomb) gameObj;
                 for (int j = 1; j >= 0; j--) {
-                    if (gameShape.getIntersectionFrame().intersects((Rectangle2D) clown.getMorethanOneIntersectionFrame()[j])) {
-                        ((Bomb) gameShape).bombTouchedClown();                        
-                        EventHandler.getEventHandler().recieveEvent(new BombExplosionEvent(gameShape));
+                    if (bomb.getIntersectionFrame().intersects((Rectangle2D) clown.getMorethanOneIntersectionFrame()[j])) {
+                        bomb.bombTouchedClown();
+                        EventHandler.getEventHandler().recieveEvent(new BombExplosionEvent(bomb));
                     }
                 }
-
             }
         }
 

@@ -1,9 +1,10 @@
 package Model.GameObjects.ObjectCollections;
 
 import eg.edu.alexu.csd.oop.game.GameObject;
+import java.util.Iterator;
 import java.util.LinkedList;
 
-public abstract class GameObjectCollection {
+public abstract class GameObjectCollection implements Iterable<GameObject>{
 
     private LinkedList<GameObject> gameObjectsList;
     
@@ -23,6 +24,25 @@ public abstract class GameObjectCollection {
         return gameObjectsList;
     }
     
+    @Override
+    public Iterator<GameObject> iterator() {
+        
+        Iterator<GameObject> it = new Iterator<>() {
+
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < gameObjectsList.size() && gameObjectsList.get(currentIndex) != null;
+            }
+
+            @Override
+            public GameObject next() {
+                return gameObjectsList.get(currentIndex++);
+            }
+        };
+        return it;
+    }
     
 
 }
