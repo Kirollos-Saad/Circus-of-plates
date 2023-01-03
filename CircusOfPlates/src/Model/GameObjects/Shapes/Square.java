@@ -57,11 +57,6 @@ public class Square extends GameShape implements PaintedShape {
         g2.setColor(shapeColor);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.fillRect(0, 0, SIDE_LENGTH, SIDE_LENGTH);
-
-        //Debugging
-        g2.setColor(Color.RED);
-        g2.draw(new Rectangle2D.Double(0, 0.8 * SPRITE_HEIGHT, SPRITE_WIDTH-2, 0.2 * SPRITE_HEIGHT-2));
-
         g2.dispose();
         return new ImageObject(bufferedImages);
 

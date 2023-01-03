@@ -1,10 +1,5 @@
 package Controller;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.*;
-import java.awt.*;
-
 
 public class GameMenu extends javax.swing.JFrame {
 

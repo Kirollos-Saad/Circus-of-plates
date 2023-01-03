@@ -56,14 +56,7 @@ public class Plate extends GameShape implements PaintedShape {
         //Drawing Plate Top
         g2.setColor(Color.BLACK); //Top is always black
         g2.fillOval(0, 0, horizontalRadius * 2, verticalRadius * 2);
-        
-        
-        
-        //Debugging
-        
-        g2.setColor(Color.RED);
-        g2.draw(new Rectangle2D.Double(SPRITE_WIDTH/6, 0.8 * SPRITE_HEIGHT ,(2*SPRITE_WIDTH)/3,  0.2 * SPRITE_HEIGHT));
-        
+                        
         
         g2.dispose();
         
