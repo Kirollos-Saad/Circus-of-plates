@@ -72,10 +72,7 @@ public class Circus implements World {
     public boolean refresh() {
         circusDifficulty.getSpawner().spawnShapeInContainer(movableObjects);
         movableObjects.moveAll();
-        
-
         IntersectionDetector.getIntersectionDetector().handleIntersections(constantObjects, movableObjects, controllableObjects);
-
         return gameRunning;
     }
 
