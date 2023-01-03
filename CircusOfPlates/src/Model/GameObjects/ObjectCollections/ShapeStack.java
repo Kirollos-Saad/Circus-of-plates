@@ -30,9 +30,9 @@ public class ShapeStack implements Intersectable {
     public void addToStack(GameShape gameShape) {
         gameShape.getMovingState().shapeCaught();
         stackOfShapes.add(gameShape);
-        stackTopRelative -= gameShape.getHeight();        
+        stackTopRelative -= gameShape.getHeight();
         checkSameColor();
-        if(stackTopRelative + clown.getY() <= 0){
+        if (stackTopRelative + clown.getY() <= 0) {
             EventHandler.getEventHandler().receiveEvent(new HealthBarEmptyEvent());
         }
     }
@@ -52,7 +52,7 @@ public class ShapeStack implements Intersectable {
             }
 
         }
-        
+
         removeFromStack(3);
 
     }
@@ -74,7 +74,7 @@ public class ShapeStack implements Intersectable {
         for (int i = 0; i < stackOfShapes.size(); i++) {
             GameShape gameShape = stackOfShapes.get(i);
             shapeY -= gameShape.getHeight();
-            gameShape.setX(clownX + relativePosition.x + STACK_WIDTH/2 - gameShape.getWidth()/2);
+            gameShape.setX(clownX + relativePosition.x + STACK_WIDTH / 2 - gameShape.getWidth() / 2);
             gameShape.setY(shapeY);
 
         }
@@ -83,13 +83,36 @@ public class ShapeStack implements Intersectable {
 
     @Override
     public Shape getIntersectionFrame() {
-        int x1 = clown.getX() + relativePosition.x + 5;
-        int y1 = clown.getY() + stackTopRelative;
+//        int x1 = clown.getX() + relativePosition.x + 5;
+//        int y1 = clown.getY() + stackTopRelative;
+//
+//        int x2 = clown.getX() + relativePosition.x + STACK_WIDTH - 5;
+//        int y2 = y1;
+//
+//        return new Line2D.Float(x1, y1, x2, y2);
 
-        int x2 = clown.getX() + relativePosition.x + STACK_WIDTH - 5;
-        int y2 = y1;
+        int x1, x2, y1, y2;
 
-        return new Line2D.Float(x1, y1, x2, y2);
+        if (stackOfShapes.isEmpty()) {
+            x1 = clown.getX() + relativePosition.x + 5;
+            y1 = clown.getY() + stackTopRelative;
+
+            x2 = clown.getX() + relativePosition.x + STACK_WIDTH - 5;
+            y2 = y1;
+
+            return new Line2D.Float(x1, y1, x2, y2);
+        } else {
+
+            x1 = stackOfShapes.getLast().getX()+ 5;
+            y1 = clown.getY() + stackTopRelative;
+
+            x2 = stackOfShapes.getLast().getX() + stackOfShapes.getLast().getWidth() - 5;
+            y2 = y1;
+
+            return new Line2D.Float(x1, y1, x2, y2);
+
+        }
+
     }
 
 }
