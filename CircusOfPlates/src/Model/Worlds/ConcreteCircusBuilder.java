@@ -10,7 +10,7 @@ import Model.GameObjects.ObjectCollections.MovableObjects;
 import Model.GameObjects.Shapes.ScoreBoard;
 import eg.edu.alexu.csd.oop.game.World;
 
-public class ConcreteCircusBuilder implements CircusBuilder, WorldBuilder {
+public class ConcreteCircusBuilder implements  CircusBuilder {
 
     private Difficulty circusDifficulty;
     private int width;
@@ -19,7 +19,15 @@ public class ConcreteCircusBuilder implements CircusBuilder, WorldBuilder {
     private ConstantObjects constantObjects;
     private MovableObjects movableObjects;
     private ControllableObjects controllableObjects;
+    private int scoreIncrement;
+    
+    
+    @Override
+    public void setScoreIncrement(int scoreIncrement) {
+        this.scoreIncrement = scoreIncrement;
+    }
 
+    
     @Override
     public void setDifficulty(Difficulty difficulty) {
         circusDifficulty = difficulty;
@@ -63,7 +71,7 @@ public class ConcreteCircusBuilder implements CircusBuilder, WorldBuilder {
         constantObjects.addGameObject(healthBar);
         
         //Score
-        ScoreBoard scoreBoard = new ScoreBoard();
+        ScoreBoard scoreBoard = new ScoreBoard(scoreIncrement);
         constantObjects.addGameObject(scoreBoard);
         
         //Adjusting EventHandler

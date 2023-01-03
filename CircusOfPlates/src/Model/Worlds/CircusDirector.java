@@ -26,8 +26,9 @@ public class CircusDirector {
         Difficulty easyDifficulty = difficultyBuilder.getResult();
 
         //Build Circus with Difficulty
-        WorldBuilder circusBuilder = new ConcreteCircusBuilder();
-        ((CircusBuilder) circusBuilder).setDifficulty(easyDifficulty);
+        CircusBuilder circusBuilder = new ConcreteCircusBuilder();
+        circusBuilder.setDifficulty(easyDifficulty);
+        circusBuilder.setScoreIncrement(1);
         Clown gameClown = new Clown(100, 430, 30, "/Sprites/Clown 1.png");
         ConstantObjects constantObjects = new ConstantObjects();
         MovableObjects movableObjects = new MovableObjects();
@@ -37,6 +38,7 @@ public class CircusDirector {
         circusBuilder.buildControllables(controllableObjects);
         circusBuilder.buildMovables(movableObjects);
         circusBuilder.buildDimensions(width, height);
+        
         return circusBuilder.getResult();
     }
 
@@ -50,8 +52,9 @@ public class CircusDirector {
         Difficulty mediumDifficulty = difficultyBuilder.getResult();
 
         //Build Circus with Difficulty
-        WorldBuilder circusBuilder = new ConcreteCircusBuilder();
-        ((CircusBuilder) circusBuilder).setDifficulty(mediumDifficulty);
+        CircusBuilder circusBuilder = new ConcreteCircusBuilder();
+        circusBuilder.setDifficulty(mediumDifficulty);
+        circusBuilder.setScoreIncrement(2);
         Clown gameClown = new Clown(100, 430, 30, "/Sprites/Clown 3.png");
         ConstantObjects constantObjects = new ConstantObjects();
         MovableObjects movableObjects = new MovableObjects();
@@ -74,8 +77,9 @@ public class CircusDirector {
         Difficulty hardDifficulty = difficultyBuilder.getResult();
 
         //Build Circus with Difficulty
-        WorldBuilder circusBuilder = new ConcreteCircusBuilder();
-        ((CircusBuilder) circusBuilder).setDifficulty(hardDifficulty);
+        CircusBuilder circusBuilder = new ConcreteCircusBuilder();
+        circusBuilder.setScoreIncrement(3);
+        circusBuilder.setDifficulty(hardDifficulty);
         Clown gameClown = new Clown(100, 430, 30, "/Sprites/Clown 2.png");
         ConstantObjects constantObjects = new ConstantObjects();
         MovableObjects movableObjects = new MovableObjects();

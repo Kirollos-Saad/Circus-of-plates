@@ -2,7 +2,7 @@ package Events;
 
 import Model.GameObjects.Shapes.GameShape;
 
-public class ShapeRemovedFromStackEvent implements Event{
+public class ShapeRemovedFromStackEvent{
     private GameShape removedShape;
 
     public GameShape getRemovedShape() {

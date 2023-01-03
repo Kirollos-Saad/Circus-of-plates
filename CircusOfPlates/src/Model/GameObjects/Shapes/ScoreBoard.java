@@ -15,31 +15,41 @@ public class ScoreBoard implements GameObject {
     private int y;
     private boolean visible;
     private int score;
+    private int defaultIncrement;
 
     public ScoreBoard() {
-        this.x = x;
-        this.y = y;
         this.visible = true;
-        this.score = 0;        
+        this.score = 0;
+
+    }
+
+    public ScoreBoard(int defaultIncrement) {
+        this.visible = true;
+        this.score = 0;
+        this.defaultIncrement = defaultIncrement;
+
+    }
+
+    public void incrementScore() {
+        score += defaultIncrement;
+
     }
 
     public void incrementScore(int increment) {
-        score += increment;        
+        score += increment;
 
     }
 
     public void decrementScore(int decrement) {
         score -= decrement;
-        score = Integer.max(0, score);      
+        score = Integer.max(0, score);
     }
-    
-    public void calculateCoordinates(){
-        setX(Game.getGameObject().getScreenWidth()-this.getWidth());
+
+    public void calculateCoordinates() {
+        setX(Game.getGameObject().getScreenWidth() - this.getWidth());
         setY(0);
-        
+
     }
-    
-    
 
     @Override
     public int getX() {
@@ -63,7 +73,7 @@ public class ScoreBoard implements GameObject {
 
     @Override
     public int getWidth() {
-        return (7 + String.valueOf(score).length()) * (CHAR_WIDTH/2);
+        return (7 + String.valueOf(score).length()) * (CHAR_WIDTH / 2);
 
     }
 
@@ -89,7 +99,7 @@ public class ScoreBoard implements GameObject {
         Font font = new Font("Serif", Font.BOLD, CHAR_WIDTH);
         g2.setFont(font);
 
-        g2.drawString("Score: " +score, 0, 30);
+        g2.drawString("Score: " + score, 0, 30);
 
         return bufferedImages;
     }

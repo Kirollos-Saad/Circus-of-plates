@@ -1,5 +1,9 @@
 package Controller;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class GameMenu extends javax.swing.JFrame {
 
@@ -9,18 +13,18 @@ public class GameMenu extends javax.swing.JFrame {
     public GameMenu() {
         initComponents();
         this.setTitle("Choose Difficulty");
-        
+
         //setSize(400,400);
         setVisible(true);
 
         setLayout(new BorderLayout());
 
-        JLabel background=new JLabel(new ImageIcon("src\\Sprites\\Circus.jpg"));
+        JLabel background = new JLabel(new ImageIcon("src\\Sprites\\Circus.jpg"));
 
         add(background);
 
         background.setLayout(new FlowLayout());
-        
+
     }
 
     /**
@@ -35,7 +39,6 @@ public class GameMenu extends javax.swing.JFrame {
         easyButton = new javax.swing.JButton();
         mediumButton = new javax.swing.JButton();
         hardButton = new javax.swing.JButton();
-        playButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,15 +72,6 @@ public class GameMenu extends javax.swing.JFrame {
             }
         });
 
-        playButton.setBackground(new java.awt.Color(255, 0, 255));
-        playButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        playButton.setText("Play");
-        playButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playButtonActionPerformed(evt);
-            }
-        });
-
         jLabel1.setBackground(new java.awt.Color(255, 0, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setText("Choose Difficulty");
@@ -89,17 +83,12 @@ public class GameMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(296, 296, 296)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(314, 314, 314)
-                        .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(296, 296, 296)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mediumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(easyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(mediumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(easyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(311, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,9 +102,7 @@ public class GameMenu extends javax.swing.JFrame {
                 .addComponent(mediumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(hardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
-                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
+                .addGap(205, 205, 205))
         );
 
         pack();
@@ -123,20 +110,25 @@ public class GameMenu extends javax.swing.JFrame {
 
     private void mediumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumButtonActionPerformed
         Game.setDifficulty("Medium");
+        play();
     }//GEN-LAST:event_mediumButtonActionPerformed
 
     private void easyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyButtonActionPerformed
         Game.setDifficulty("Easy");
+        play();
     }//GEN-LAST:event_easyButtonActionPerformed
 
     private void hardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardButtonActionPerformed
         Game.setDifficulty("Hard");
+        play();
     }//GEN-LAST:event_hardButtonActionPerformed
 
-    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+    private void play() {
         Game game = Game.getGameObject();
         game.setMenu(this);
-    }//GEN-LAST:event_playButtonActionPerformed
+        this.setVisible(false);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -179,6 +171,5 @@ public class GameMenu extends javax.swing.JFrame {
     private javax.swing.JButton hardButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton mediumButton;
-    private javax.swing.JButton playButton;
     // End of variables declaration//GEN-END:variables
 }

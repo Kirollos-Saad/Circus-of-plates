@@ -45,11 +45,15 @@ public class EventHandler { //Singleton
         this.movableObjects = movableObjects;
     }
 
+//    public void receiveEvent(Event e) {
+//        System.out.println("hello event worked");
+// 
+//    }
 
     public void receiveEvent(ShapeRemovedFromStackEvent e) {
 
         movableObjects.removeGameObject(e.getRemovedShape());
-        scoreBoard.incrementScore(1);
+        scoreBoard.incrementScore();
     }
 
     public void receiveEvent(ShapeBeyondScreenBottomEvent e) {

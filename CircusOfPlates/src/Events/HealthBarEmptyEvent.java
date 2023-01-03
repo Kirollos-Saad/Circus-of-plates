@@ -1,7 +1,7 @@
 package Events;
 
 
-public class HealthBarEmptyEvent implements Event{
+public class HealthBarEmptyEvent{
     
     
 }

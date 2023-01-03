@@ -2,7 +2,7 @@ package Events;
 
 import Model.GameObjects.Shapes.GameShape;
 
-public class ShapeBeyondScreenBottomEvent implements Event {
+public class ShapeBeyondScreenBottomEvent{
 
     private GameShape removedShape;
 

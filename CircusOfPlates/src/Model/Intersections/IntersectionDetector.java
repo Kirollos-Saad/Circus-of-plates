@@ -95,7 +95,7 @@ public class IntersectionDetector { //Singleton
 
                 for (int j = 1; j >= 0; j--) {
                     if (gameShape.getIntersectionFrame().intersects((Rectangle2D) clown.getMorethanOneIntersectionFrame()[j])) {
-                        ((Bomb) gameShape).bombTouchedClown();
+                        ((Bomb) gameShape).bombTouchedClown();                        
                         EventHandler.getEventHandler().recieveEvent(new BombExplosionEvent(gameShape));
                     }
                 }

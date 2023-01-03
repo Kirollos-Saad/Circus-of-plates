@@ -5,7 +5,7 @@ import Model.GameObjects.Shapes.Bomb;
 import Model.GameObjects.Shapes.GameShape;
 
 
-public class BombExplosionEvent implements Event{
+public class BombExplosionEvent{
     private GameShape bomb;
     
     public GameShape getBomb() {
