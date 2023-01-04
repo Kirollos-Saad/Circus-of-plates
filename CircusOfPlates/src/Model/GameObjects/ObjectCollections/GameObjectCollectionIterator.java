@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class GameObjectCollectionIterator implements Iterator<GameObject>{
 
-    GameObjectCollection gameObjCollection;
+    private GameObjectCollection gameObjCollection;
     
     
     private int currentIndex = 0;

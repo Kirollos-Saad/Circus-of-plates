@@ -1,5 +1,6 @@
-package Controller;
+package View;
 
+import Controller.Game;
 import Model.Worlds.CircusDirector;
 import eg.edu.alexu.csd.oop.game.World;
 import java.awt.BorderLayout;

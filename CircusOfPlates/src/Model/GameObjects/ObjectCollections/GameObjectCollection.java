@@ -27,7 +27,7 @@ public abstract class GameObjectCollection implements Iterable<GameObject>{
     @Override
     public Iterator<GameObject> iterator() {
         
-        Iterator<GameObject> it = new GameObjectCollectionIterator(this) ;
+        Iterator<GameObject> it = new GameObjectCollectionIterator(this) ;    
         return it;
     }
 }
