@@ -8,7 +8,7 @@ import eg.edu.alexu.csd.oop.game.GameObject;
 
 public class MovableObjects extends GameObjectCollection{
 
-    public void moveAll() { //May be iterator
+    public void moveAll() { // iterator
         for(GameObject movableObject : this.getGameObjectsList() ){
             ((GameShape)movableObject).getMovingState().move();
         }
