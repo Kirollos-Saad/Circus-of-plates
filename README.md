@@ -4,7 +4,7 @@ This project is a Circus of Plates game implemented in Java, featuring object-or
 
 ## Overview
 
-The Circus of Plates game is a project developed as part of a Programming 2 subject in college. The game aims to provide an interactive experience for players where they can enjoy throwing plates at targets in a circus setting.
+The Circus of Plates game is a project developed as part of a Programming 2 subject in college. The game aims to provide an interactive experience for players where they can enjoy collecting plates in a circus setting.
 
 ## Features
 
